@@ -15,7 +15,3 @@ require("./public/routes/html-routes.js")(app);
 app.listen(port);
 console.log("App listening on PORT 9000");
 
-//@TODO Delete below after you verify the the app is working
-app.route('/').get(function(request, response) {
-    response.json(config);
-});

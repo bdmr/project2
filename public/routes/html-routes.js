@@ -1,3 +1,5 @@
+const path = require("path")
+
 module.exports = function(app) {
 
     // Each of the below routes just handles the HTML page that the user gets sent to.
@@ -8,10 +10,10 @@ module.exports = function(app) {
       });
 
     app.get("/adminAddStudent", function(req, res) {
-      res.sendFile(path.join(__dirname, "../public/adminAddStudent.html"));
+      res.sendFile(path.join(__dirname, "../adminAddStudent.html"));
     });
   
     app.get("/adminReviewStudent", function(req, res) {
-      res.sendFile(path.join(__dirname, "../public/adminReviewStudent.html"));
+      res.sendFile(path.join(__dirname, "../adminReviewStudent.html"));
     });
 }
