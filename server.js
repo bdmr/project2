@@ -10,6 +10,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 app.listen(port);
+console.log("App listening on PORT " + PORT);
 
 //@TODO Delete below after you verify the the app is working
 app.route('/').get(function(request, response) {
