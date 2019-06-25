@@ -6,14 +6,14 @@ module.exports = function(app) {
   
     // index route loads view.html
     app.get("/", function(req, res) {
-        res.sendFile(path.join(__dirname, "../../index.html"));
+        res.sendFile(path.join(__dirname, "../public/index.html"));
       });
 
     app.get("/adminAddStudent", function(req, res) {
-      res.sendFile(path.join(__dirname, "../adminAddStudent.html"));
+      res.sendFile(path.join(__dirname, "../public/adminAddStudent.html"));
     });
   
     app.get("/adminReviewStudent", function(req, res) {
-      res.sendFile(path.join(__dirname, "../adminReviewStudent.html"));
+      res.sendFile(path.join(__dirname, "../public/adminReviewStudent.html"));
     });
 }

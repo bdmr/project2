@@ -10,7 +10,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 // require("./routes/api-routes.js")(app);
-require("./public/routes/html-routes.js")(app);
+require("./routes/html-routes.js")(app);
 
 app.listen(port);
 console.log("App listening on PORT 9000");
