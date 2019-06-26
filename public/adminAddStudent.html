@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <style>
+        .login .card {
+            margin-top: 100px;
+        }
+    </style>
+
+    <title>Admin Input</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-action deep-orange lighten-2 white-text">
+                <h4>Complete Info to Add Student:</h4>
+            </div>
+            <br>
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input placeholder="First Name" id="parent_first_name" type="text" class="validate">
+                            <label for="first_name">Parent Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="parent_last_name" type="text" class="validate">
+                            <label for="last_name">Last Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input placeholder="First Name" id="student_first_name" type="text" class="validate">
+                            <label for="first_name">Student Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="student_last_name" type="text" class="validate">
+                            <label for="last_name">Last Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <select>
+                                <option value="" disabled selected>Student Grade</option>
+                                <option value="1">Grade 1</option>
+                                <option value="2">Grade 2</option>
+                                <option value="3">Grade 3</option>
+                                <option value="4">Grade 4</option>
+                                <option value="5">Grade 5</option>
+                                <option value="6">Grade 6</option>
+                            </select>
+                            <label>Grade Level</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <select>
+                                <option value="" disabled selected>Teacher</option>
+                                <option value="Lee">Lee</option>
+                                <option value="Reese">Reese</option>
+                                <option value="McGee">McGee</option>
+                                <option value="Newell">Newell</option>
+                                <option value="Younts">Younts</option>
+                                <option value="Link">Link</option>
+                                <option value="Brehm">Brehm</option>
+                                <option value="Tisdale">Tisdale</option>
+                            </select>
+                            <label>Grade Level</label>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-field center-align">
+                        <button class="btn-large deep-orange lighten-2">Add Student</button>
+                    </div>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('select').formSelect();
+        });
+        $('#textarea1').val('New Text');
+        M.textareaAutoResize($('#textarea1'));
+    </script>
+</body>
+
+</html>
