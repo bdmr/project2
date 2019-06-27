@@ -1,12 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>adminAddStudent</title>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <style>
+        .login .card {
+            margin-top: 100px;
+        }
+    </style>
+
+    <title>Admin Review</title>
 </head>
+
 <body>
-    <h1>This is the admin review student page</h1>
+    <div class="container">
+        <div class="card">
+            <div class="card-action deep-orange lighten-2 white-text">
+                <h4>Review Your Student:</h4>
+            </div>
+            <br>
+            <div class="row">
+                <div class="input-field col s10">
+                    <i class="material-icons prefix">face
+                    </i>
+                    <select>
+                        <option value="" disabled selected>Student</option>
+                        <option value="1">name from table (placeholder)</option>
+                        <!-- todo: dynamically insert student names from table -->
+                    </select>
+                    <label>Select Student</label>
+                </div>
+            </div>
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s10">
+                            <i class="material-icons prefix">assignment_ind</i>
+                            <textarea id="activity" class="materialize-textarea"></textarea>
+                            <label for="icon_prefix2">Activity</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s10">
+                            <i class="material-icons prefix">mode_edit</i>
+                            <textarea id="admin_comments" class="materialize-textarea"></textarea>
+                            <label for="icon_prefix2">Insert Comments Here</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <br>
+            <div class="form-field center-align">
+                <button class="btn-large deep-orange lighten-2">Add Comments</button>
+            </div>
+            <br>
+            </form>
+        </div>
+    </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('select').formSelect();
+        });
+        $('#textarea1').val('New Text');
+        M.textareaAutoResize($('#textarea1'));
+    </script>
 </body>
+
 </html>
