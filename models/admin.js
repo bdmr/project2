@@ -1,29 +1,18 @@
 module.exports = function(sequelize, DataTypes) {
-    var Grade = sequelize.define("Grade", {
-      title: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          len: [1]
-        }
-      },
-      body: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-        len: [1]
-      }
+  var Admin = sequelize.define("Admin", {
+    // Giving the Author model a name of type STRING
+    name: DataTypes.STRING
+  });
+
+  Admin.associate = function(models) {
+    // Associating Author with Posts
+    // When an Author is deleted, also delete any associated Posts
+    Author.hasMany(models.Review, {
+      onDelete: "cascade"
     });
-  
-    Grade.associate = function(models) {
-      // We're saying that a Grade should belong to an Student
-      // A Grade can't be created without a Student due to the foreign key constraint
-      Grade.belongsTo(models.Student, {
-        foreignKey: {
-          allowNull: false
-        }
-      });
-    };
-  
-    return Grade;
   };
+
+  return Admin;
+};
+
   

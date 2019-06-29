@@ -15,7 +15,7 @@ module.exports = function(app) {
   // GET route for getting all of the grades
   app.get("/api/students", function(req, res) {
     var query = {};
-    if (req.query.student_id) {
+    if (req.query._id) {
       query.StudentId = req.query.student_id;
     }
     // 1. Add a join here to include all of the Studentss to these grades

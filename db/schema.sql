@@ -1,14 +1,12 @@
 CREATE TABLE admin
 (
 	id int NOT NULL AUTO_INCREMENT,
-	student_last_name varchar(255) NOT NULL,
-    student_first_name varchar(255) NOT NULL,
+	student_name varchar(255) NOT NULL,
     grade_level varchar(255) NOT NULL, 
     student_class varchar(255) NOT NULL,
     letter_grade varchar(255) NOT NULL,
     comments varchar(255) NOT NULL,
-    parent_last_name varchar(255) NOT NULL,
-    parent_first_name varchar(255) NOT NULL,
+    parent_name varchar(255) NOT NULL,
 	PRIMARY KEY (id)
 );
 

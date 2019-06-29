@@ -1,4 +1,4 @@
-$(document).ready()function() {
+$(document).ready(function() {
 
 var viewContainer = $(".view-container");
 // var postCategorySelect = $("#category"); not sure where this is pulling from yet
@@ -68,4 +68,4 @@ return newReviewCard;
 
 
 
-}
+})
