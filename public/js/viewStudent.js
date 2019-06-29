@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 var viewContainer = $(".view-container");
-// var postCategorySelect = $("#category"); not sure where this is pulling from yet
+var postCategorySelect = $("#comments"); 
 
 //holds posts/reviews of student
 var reviews;
