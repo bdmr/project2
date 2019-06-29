@@ -50,19 +50,34 @@ viewContainer.append(reviewsToAdd);
 }
 
 function createNewRow(review) {
-var formattedDate = new Date(review.CreatedAt);
+var formattedDate = new Date(review.createdAt);
 formattedDate = moment(formattedDate).format ("MMMM Do YYYY, h:mm:ss a");
-var newReviewCard = $("<div>");
-newReviewCard.addClass("card blue-grey darken-1");
-var newReviewCardContent = $("<div>");
-newReviewCardContent.addClass("card-content white-text");
-var newCardTitle = $("<div>");
-var newMessage = $("<p>");
+var newPost = $("<div>");
+var newStudent = $("<p>");
+var newStudentName = $("<h5>");
+newStudentName.text("Student Name: " + review.Admin.student_name)
+var newComment = $("<p>");
 
-newMessage.text(review.body) //don't think this is actually what it is called
-//have to append everything
+var addNewComment = $("<h5>");
+addNewComment.text("Comment: " + review.Admin.comments)
+var newPostTitle = $("<h5>");
+var newPostDate = $("<small>");
+var newReviewCard = $("<div>");
+newPostDate.text(formattedDate);
+newPostTitle.append(newPostDate);
+
+
+newComment.append(addNewComment);
+newStudent.append(addStudentName);
+newPost.append(newPostTitle);
+newPost.append(newComment);
+newPost.append(newStudent);
+
+newReviewCard.append(newPost)
+newReviewCard.data("review", review)
 
 return newReviewCard;
+
 }
 
 
