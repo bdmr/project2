@@ -27,7 +27,8 @@ module.exports = function(app) {
     });
   });
 
-  // Get route for retrieving a single student's grade
+  //MAY HAVE TO REDO this. This should pull the parent name attached to the students
+  //Get route for retrieving a single student's grade
   app.get("/api/students/:id", function(req, res) {
     // 2. Add a join here to include the Author who wrote the Post - delete
     db.Grade.findOne({
