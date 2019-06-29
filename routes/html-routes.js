@@ -16,4 +16,8 @@ module.exports = function(app) {
     app.get("/adminReviewStudent", function(req, res) {
       res.sendFile(path.join(__dirname, "../public/adminReviewStudent.html"));
     });
+    
+    app.get("/viewStudent", function(req, res) {
+      res.sendFile(path.join(__dirname, "../public/viewStudent.html"));
+    });
 }
