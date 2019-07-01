@@ -1,23 +1,28 @@
-const path = require("path")
+var path = require("path");
 
-module.exports = function(app) {
 
-    // Each of the below routes just handles the HTML page that the user gets sent to.
-  
-    // index route loads view.html
-    app.get("/", function(req, res) {
-        res.sendFile(path.join(__dirname, "../public/index.html"));
-      });
+module.exports = function(app){
+    //home page
+    app.get("/", function(req, res){
+        res.sendFile(path.join(__dirname, "../public/blog.html"));
 
-    app.get("/adminAddStudent", function(req, res) {
-      res.sendFile(path.join(__dirname, "../public/adminAddStudent.html"));
     });
-  
-    app.get("/adminReviewStudent", function(req, res) {
-      res.sendFile(path.join(__dirname, "../public/adminReviewStudent.html"));
-    });
-    
-    app.get("/viewStudent", function(req, res) {
-      res.sendFile(path.join(__dirname, "../public/viewStudent.html"));
-    });
+    //page to add a parent
+    app.get("/addParent", function(req, res){
+        res.sendFile(path.join(__dirname, "../public/addParent.html"));
+    })
+
+    //page to add a teacher
+    app.get("/addTeacher", function(req, res){
+        res.sendFile(path.join(__dirname, "../public/addTeacher.html"));
+    })
+
+    //page to add a student comment
+    app.get("/cms", function(req, res){
+        res.sendFile(path.join(__dirname, "../public/cms.html"));
+    })
+//another path to the blog page
+    app.get("/blog", function(req, res){
+        res.sendFile(path.join(__dirname, "../public/blog.html"));
+    })
 }

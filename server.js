@@ -1,17 +1,37 @@
-require('dotenv').config();
+// *****************************************************************************
+// Server.js - This file is the initial starting point for the Node/Express server.
+//
+// ******************************************************************************
+// *** Dependencies
+// =============================================================
+var express = require("express");
 
-var express = require('express');
+// Sets up the Express App
+// =============================================================
 var app = express();
-var port = process.env.PORT || 9000;
-var config = require('./config');
+var PORT = process.env.PORT || 8080;
 
-app.use(express.static(__dirname + '/public')); // you should change this to be wherever your html files are
-app.use(express.urlencoded({extended: true}));
+// Requiring our models for syncing
+var db = require("./models");
+
+// Sets up the Express app to handle data parsing
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// require("./routes/api-routes.js")(app);
+// Static directory
+app.use(express.static("public"));
+
+// Routes
+// =============================================================
 require("./routes/html-routes.js")(app);
+require("./routes/parent-api-routes.js")(app);
+require("./routes/post-api-routes")(app);
+require("./routes/teacher-api-routes.js")(app);
 
-app.listen(port);
-console.log("App listening on PORT 9000");
-
+// Syncing our sequelize models and then starting our Express app
+// =============================================================
+db.sequelize.sync({ force: true }).then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
+});
