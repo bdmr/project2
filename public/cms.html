@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <style>
+        .card {
+            margin-top: 30px;
+            padding-bottom: 30px;
+        }
+    </style>
+
+    <title>Create Posts</title>
+</head>
+
+<body>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper deep-orange lighten-2">
+                <a href="#" class="brand-logo right">Logo</a>
+                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <li><a href="activities.html">Activities</a></li>
+                    <li><a href="calender.html">Calendar</a></li>
+                    <li><a href="viewStudent.html">Students</a></li>
+                    <li><a href="statements.html">Statements</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <!-- This is the new form -->
+    <div class="container">
+        <div class="card">
+            <div class="card-action deep-orange lighten-2 white-text">
+                <h4>Review Your Student:</h4>
+            </div>
+            <br>
+            <div class="form-group center-align">
+                <div class="row">
+                    <form id="student-form">
+                        <div class="input-field col s8">
+                            <i class="material-icons prefix">face</i>
+                            <label for="student_name"></label>
+                            <input class="input-field" placeholder="Enter Student Name" type="text" id="student_name">
+                        </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="input-field col s8">
+                        <i class="material-icons prefix">mode_edit</i>
+                        <label for="comment"></label>
+                        <textarea placeholder="Type your comments here" rows="10" id="comment"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s8">
+                        <label for="parent"> Select Parent: </label>
+                        <select id="parent">
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s8">
+                        <label for="teacher"> Select Teacher: </label>
+                        <select id="teacher">
+                        </select>
+                    </div>
+                </div>
+                <br />
+                <div class="form-field center-align">
+                    <button type="submit" button class="btn-large deep-orange lighten-2 hoverable">Add Comments</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('select').formSelect();
+        });
+        $('#textarea1').val('New Text');
+        M.textareaAutoResize($('#textarea1'));
+    </script>
+    <script src=“js/cms.js” type=“text/javascript”> </script> </body> </html>
