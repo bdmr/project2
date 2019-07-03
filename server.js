@@ -1,36 +1,29 @@
-// *****************************************************************************
-// Server.js - This file is the initial starting point for the Node/Express server.
-//
-// ******************************************************************************
-// *** Dependencies
-// =============================================================
-
 require('dotenv').config();
+var bodyParser = require("body-parser");
+var session = require("express-session");
 var express = require("express");
+var passport = require("./config/passport");
 
-// Sets up the Express App
-// =============================================================
 var app = express();
 var port = process.env.PORT || 9000;
-//var config = require('./config');
 
-// Requiring our models for syncing
-//var db = require("./models");
+var db = require("./models");
 
-// Sets up the Express app to handle data parsing
-app.use(express.static(__dirname + '/public'));
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+var app = express();
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(express.static("public"));
 
-// Routes
-// =============================================================
+app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
 require("./routes/html-routes.js")(app);
 require("./routes/parent-api-routes.js")(app);
 require("./routes/post-api-routes.js")(app);
 require("./routes/teacher-api-routes.js")(app);
-
-// Syncing our sequelize models and then starting our Express app
-// =============================================================
-
+require("./routes/api-routes.js")(app);
+db.sequelize.sync().then(function() {
   app.listen(port);
   console.log("App listening on PORT 9000");
+});
