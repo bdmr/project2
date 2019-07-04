@@ -21,7 +21,7 @@ $(document).ready(function() {
     }
     // Otherwise if we have an author_id in our url, preset the author select box to be our Author
     else if (url.indexOf("?parent_id=") !== -1) {
-      authorId = url.split("=")[1];
+      parentId = url.split("=")[1];
     }
   
     // Getting the authors, and their posts

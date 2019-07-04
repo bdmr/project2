@@ -6,7 +6,7 @@
 				center: 'title',
 				right: 'month,basicWeek,basicDay'
 			},
-			defaultDate: '2019-06-24',
+			defaultDate: '2019-07-04',
 			navLinks: true, // can click day/week names to navigate views
 			editable: true,
 			eventLimit: true, // allow "more" link when too many events
@@ -43,6 +43,24 @@
 					title: 'Click for Google',
 					url: 'https://google.com/',
 					start: '2019-07-28'
+				},
+				{
+					title: 'Kids Slime Workshop',
+					url: 'https://www.artstudiolocalcolor.com/',
+					start: '2019-07-06',
+					end: '2019-07-06'
+				},
+				{
+					title: 'CCM Free Day',
+					url: 'chicagochildrensmuseum.org',
+					start: '2019-07-07',
+					end: '2019-07-07'
+				},
+				{
+					title: 'Parents Survival Night',
+					url: 'https://www.thelittlegym.com',
+					start: '2019-07-12',
+					end: '2019-07-12'
 				}
 			]
 		});
