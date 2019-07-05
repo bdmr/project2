@@ -30,13 +30,11 @@ function upsertTeacher(teacherData){
 //create a new list of teachers
 
 function createTeacherRow(teacherData){
-  var newTeacherDiv = $("<div>");
-  var newTeacherName = $("<p>");
-  newTeacherName.data("teacher", teacherData);
-  newTeacherName.append(teacherData.teacher_name);
-  newTeacherDiv.append(newTeacherName);
-  newTeacherDiv.append("<div><a class='delete-teacher'> Delete Teacher</a></div>");
-  return newTeacherDiv;
+  var newTeacherDiv = $("<tr>");   
+    newTeacherDiv.data("teacher", teacherData);
+    newTeacherDiv.append("<td>" + teacherData.teacher_name + "</td>");
+    newTeacherDiv.append("<td><a class='delete-teacher waves-effect waves-light btn deep-orange lighten-2'> Delete </a></td>");
+    return newTeacherDiv;
 }
 
 //retrieve teacher, get them ready to render on page
@@ -71,7 +69,7 @@ function renderEmpty() {
 }
 
 function handleDeleteButton() {
-  var listItemData = $(this).parent("div").data("teacher");
+  var listItemData = $(this).parent().parent().data("teacher");
   var id = listItemData.id;
   $.ajax({
       method: "DELETE",

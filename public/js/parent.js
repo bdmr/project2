@@ -30,12 +30,10 @@ function upsertParent(parentData){
 //create a new list of teachers
 
 function createParentRow(parentData){
-  var newParentDiv = $("<div>");
-  var newParentName = $("<p>");
-  newParentName.data("parent", parentData);
-  newParentName.append(parentData.parent_name);
-  newParentDiv.append(newParentName);
-  newParentDiv.append("<div><a class='delete-parent'> Delete Parent</a></div>");
+  var newParentDiv = $("<tr>");
+  newParentDiv.data("parent", parentData);
+  newParentDiv.append("<td>" + parentData.parent_name + "</td>");
+  newParentDiv.append("<td><a class='delete-parent waves-effect waves-light btn deep-orange lighten-2'> Delete </a></td> <br><br>");
   return newParentDiv;
 }
 
@@ -72,7 +70,7 @@ function renderEmpty() {
 }
 
 function handleDeleteButton() {
-  var listItemData = $(this).parent("div").data("parent");
+  var listItemData = $(this).parent().parent().data("parent");
   var id = listItemData.id;
   $.ajax({
       method: "DELETE",
