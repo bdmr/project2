@@ -1,4 +1,5 @@
 var path = require("path");
+var db = require("../models")
 
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 
@@ -17,10 +18,27 @@ module.exports = function(app) {
     });
 
     app.get("/signup", function(req, res) {
-        res.render('signup', {
-            layout: 'login',
-            title: getPageTitle('Sign Up')
-        })
+        // Check the query string
+        // In order for parent to be recognized, they must already be in the system 
+        // When teacher adds student, the parent will be entered in the db because they are associated with the student
+        // Therefore, teacher must have added their student before parent can sign up
+        if (req.query.occupation === "TEACHER") {
+            res.render('signup', {
+                layout: 'login',
+                title: getPageTitle('Sign Up'),
+                isTeacher: true,
+            });
+        } else {
+            db.Parent.findAll().then(parents => {
+                console.log(parents);
+                res.render('signup', {
+                    layout: 'login',
+                    title: getPageTitle('Sign Up'),
+                    isTeacher: false,
+                    parents: parents
+                });
+            });
+        }
     });
 
     app.get("/login", function(req, res) {

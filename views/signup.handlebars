@@ -8,9 +8,26 @@
                         <h4>Please sign up</h4>
                     </div>
                     <div class="card-content">
+                        {{#if isTeacher}}
                         <div class="form-field">
-                            <label for="username" class="black-text">Email </label>
-                            <input type="text" id="username">
+                            <label for="user_name" class="black-text">Name</label>
+                            <input type="text" id="user_name">
+                        </div> <br>
+                        {{else}}
+                        <div class="form-field">
+                            <label for="user_name" class="black-text">Name </label>
+                            <select id="user_name">
+                                <option value="" disabled selected>Choose Parent</option>
+                                <option value="" >Parent McParent</option>
+                                {{#each parents}}
+                                <option value="{{this.id}}">{{this.parent_name}}</option>
+                                {{/each}}
+                            </select>
+                        </div><br>
+                        {{/if}}
+                        <div class="form-field">
+                            <label for="email" class="black-text">Email </label>
+                            <input type="text" id="email">
                         </div> <br>
 
                         <div class="form-field">

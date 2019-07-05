@@ -1,6 +1,7 @@
 var bcrypt = require("bcrypt-nodejs");
 module.exports = function(sequelize, DataTypes) {
     var User = sequelize.define("User", {
+
         email: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -11,13 +12,12 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
-
         // MJ added "occupation" to contain users in one table;
         // ENUM Datatype will allow us to differentiate if each user is a teacher or a parent
-        // occupation: {
-        //   type: DataTypes.ENUM('TEACHER', 'PARENT'),
-        //   allowNull: false
-        // }
+        occupation: {
+            type: DataTypes.ENUM('TEACHER', 'PARENT'),
+            allowNull: false
+        }
     });
     User.prototype.validPassword = function(password) {
         return bcrypt.compareSync(password, this.password);
