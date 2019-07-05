@@ -7,15 +7,10 @@ function getPageTitle(page) {
 }
 
 module.exports = function(app) {
-    //home page
-    //app.get("/", function(req, res){
-    //res.sendFile(path.join(__dirname, "../public/blog.html"));
-
-    //});
     app.get("/", function(req, res) {
-        // If the user already has an account send them to the members page
+        // If the user already has an account send them to the dashboard page
         if (req.user) {
-            res.redirect("/members");
+            res.redirect("/dashboard");
         } else {
             res.redirect('/login');
         }
@@ -31,19 +26,11 @@ module.exports = function(app) {
     app.get("/login", function(req, res) {
         // If the user already has an account send them to the members page
         if (req.user) {
-            res.redirect("/members");
+            res.redirect("/dashboard");
         }
         res.render('login', {
             layout: 'login',
             title: getPageTitle('Login')
-        })
-    });
-
-    // Here we've add our isAuthenticated middleware to this route.
-    // If a user who is not logged in tries to access this route they will be redirected to the signup page
-    app.get("/members", isAuthenticated, function(req, res) {
-        res.render('calendar', {
-            title: getPageTitle('Calendar')
         })
     });
 
@@ -53,25 +40,51 @@ module.exports = function(app) {
         })
     });
 
-    //page to add a parent
-    app.get("/addParent", function(req, res) {
-        res.render('addParent', {
-            title: getPageTitle('Add Parent')
+    app.get("/addStudent", isAuthenticated, function(req, res) {
+        res.render('addStudent', {
+            title: getPageTitle('Add New Student')
         })
     })
 
-    //page to add a teacher
-    app.get("/addTeacher", function(req, res) {
-        res.render('addTeacher', {
-            title: getPageTitle('addTeacher')
+    app.post("/addStudent", isAuthenticated, function(req, res) {
+        console.log(req.body)
+        res.redirect('/dashboard')
+    })
+
+    app.get("/dashboard", isAuthenticated, function(req, res) {
+        // TODO: add logic to distinguish between parents and teachers
+        console.log("DASHBOARD")
+        console.log(req.user);
+        const student_name = "Fred";
+        const student_id = 1;
+        res.render('dashboard', {
+            title: getPageTitle('Dashboard'),
+            isTeacher: true,
+            name: req.user.email,
+            students: [{
+                student_name: student_name,
+                student_id: student_id
+            }]
         })
     })
 
     //page to add a student comment
-    app.get("/cms", function(req, res) {
+    app.get("/cms", isAuthenticated, function(req, res) {
+        /** what data do you need?
+         * The Teacher/User 
+         * All Parents (from students)
+         * All Students
+         * =======================
+         * Teacher name (current user as long as they're a teacher, they can see this page)
+         * 
+         * Select (students)
+         * 
+         * Comments
+         * =======================
+         */
+
         res.render('cms', {
             title: getPageTitle('Create Posts')
         })
     })
-
 }

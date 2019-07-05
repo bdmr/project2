@@ -1,0 +1,30 @@
+<h3>{{ name }}'s Dashboard</h3>
+<div>
+    {{#if isTeacher}}
+    <a href="/cms">Add Comment</a>
+    <a href="/addStudent">Add New Student</a>
+    <h4>Students</h4>
+    <ul>
+        {{#each students}}
+        <li>
+            <h5>{{ student_name }}</h5>
+            <a href="/editStudent?id={{ student_id }}">Edit Student</a>
+            <a href="/comments/?id={{ student_id }}">See Comments</a>
+        </li>
+        {{/each}}
+    </ul>
+    {{else}}
+    <h4>Your Students</h4>
+    <ul>
+        {{#each students}}
+        <li>
+            <h5>{{ student_name }}</h5>
+            {{#each comments}}
+            <h6>{{date}}</h6>
+            <p>{{comment}}</p>
+            {{/each}}
+        </li>
+        {{/each}}
+    </ul>
+    {{/if}}
+</div>
