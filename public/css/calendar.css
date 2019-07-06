@@ -9,5 +9,9 @@ body {
   }
 
   .fc-bg .fc-state-highlight{ 
-      background: rgba(202, 54, 9, 0.10) !important; 
+      background: rgba(202, 54, 9, 0.20) !important; 
+    }
+
+    a {
+      color: brown;
     }
