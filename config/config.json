@@ -9,7 +9,7 @@
     },
     "test": {
         "username": "root",
-        "password": "MagJo8863008!",
+        "password": null,
         "database": "ruler",
         "host": "127.0.0.1",
         "port": 3306,

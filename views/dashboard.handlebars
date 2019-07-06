@@ -1,5 +1,6 @@
 <h3>{{ name }}'s Dashboard</h3>
-<div>
+<a href="/logout">Log out</a>
+<div class="card">
     {{#if isTeacher}}
     <a href="/cms">Add Comment</a>
     <a href="/addStudent?teacher_id={{ teacher_id }}">Add New Student</a>
