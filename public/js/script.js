@@ -4,7 +4,7 @@ $(document).ready(function() {
 		header: {
 			left: 'prev,next today',
 			center: 'title',
-			right: 'month,basicWeek,basicDay'
+			right: 'month,basicWeek,basicDay,list'
 		},
 		defaultView: 'month',
 		navLinks: true, // can click day/week names to navigate views
@@ -72,12 +72,28 @@ $(document).ready(function() {
 				start: '2019-07-12',
 				end: '2019-07-12',
 				color: 'orange'
+			},
+			{
+				title: 'ART in the Park',
+				url: 'http://www.thepaintbrush.net/art-camps-and-workshops/',
+				start: '2019-07-16T10:00:00',
+				end: '2019-07-16T13:00:00',
+				color: 'orange'
+			},
+			{
+				title: 'Finger Painting Week',
+				start: '2019-07-22',
+				end: '2019-07-27',
+				color: '#765d8d'
 			}
 		],
 		eventClick: function(event){
 			if(event.url){
 				window.open(event.url, "_blank");
 				return false;
+			}
+			else {
+
 			}
 		}
 	
