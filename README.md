@@ -5,7 +5,6 @@
 - Teacher dashboard
     - Add student
     - add comment
-    - edit student
 - Parent dashboard
     - List students and comments
 
