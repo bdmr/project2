@@ -1,16 +1,17 @@
-<h3>{{ name }}'s Dashboard</h3>
+<link rel='stylesheet' href='/css/dashboard.css'>
+<main><div class="container"><h3>{{ name }}'s Dashboard</h3>
 <a href="/api/logout">Log out</a>
-<div class="card">
+<div class="card deep-orange lighten-2">
     {{#if isTeacher}}
-    <a href="/addComment?teacher_id={{ teacher_id }}">Add Comment</a>
-    <a href="/addStudent?teacher_id={{ teacher_id }}">Add New Student</a>
+    <a class="dashLinkColor waves-effect waves-light btn-small" href="/addComment?teacher_id={{ teacher_id }}">Add Comment</a>
+    <a class="dashLinkColor waves-effect waves-light btn-small" href="/addStudent?teacher_id={{ teacher_id }}">Add New Student</a>
     <h4>Students</h4>
     <ul>
         {{#each students}}
         <li>
-            <p>{{ student_name }}</p>
+            <p>{{ student_name }}  <br>
             {{!-- <a href="/editStudent?id={{ student_id }}">Edit Student</a> --}}
-            <a href="/comments/?id={{ student_id }}">See Comments</a>
+            <a class="dashLinkColor" href="/comments/?id={{ student_id }}">See Comments</a></p><br>
         </li>
         {{/each}}
     </ul>
@@ -28,4 +29,8 @@
         {{/each}}
     </ul>
     {{/if}}
-</div>
+</div></div>
+</main>
+<footer>
+<img class="responsive-img" src="/../images/dreamstime_four.jpg" width="1800px">
+</footer>
