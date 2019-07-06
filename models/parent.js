@@ -1,17 +1,20 @@
 module.exports = function(sequelize, DataTypes) {
-    var Author = sequelize.define("Author", {
-      // Giving the Author model a name of type STRING
-      name: DataTypes.STRING
+    var Parent = sequelize.define("Parent", {
+        parent_name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
     });
-  
-    Author.associate = function(models) {
-      // Associating Author with Posts
-      // When an Author is deleted, also delete any associated Posts
-      Author.hasMany(models.Post, {
-        onDelete: "cascade"
-      });
+
+    Parent.associate = function(models) {
+        Parent.belongsTo(models.User, {
+            onDelete: "cascade",
+            allowNull: true
+        });
+
+        Parent.hasMany(models.Student, {
+            onDelete: "cascade"
+        });
     };
-  
-    return Author;
-  };
-  
+    return Parent;
+}
