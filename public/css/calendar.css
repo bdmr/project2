@@ -1,0 +1,7 @@
+.fc-unthemed .fc-today {
+    background-color: #ff8a65;
+  }
+
+  .fc-bg .fc-state-highlight{ 
+      background: rgba(255, 138, 101, .10) !important; 
+    }
