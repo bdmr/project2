@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
     });
 
     Parent.associate = function(models) {
-        Parent.hasOne(models.User, {
+        Parent.belongsTo(models.User, {
             onDelete: "cascade",
             allowNull: true
         });

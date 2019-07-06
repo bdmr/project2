@@ -30,7 +30,7 @@ module.exports = function(app) {
             });
         } else {
             db.Parent.findAll().then(parents => {
-                console.log(parents);
+                // console.log(parents);
                 res.render('signup', {
                     layout: 'login',
                     title: getPageTitle('Sign Up'),
@@ -59,31 +59,93 @@ module.exports = function(app) {
     });
 
     app.get("/addStudent", isAuthenticated, function(req, res) {
-        res.render('addStudent', {
-            title: getPageTitle('Add New Student')
-        })
+        // get all parents
+        const teacherId = req.query.teacher_id;
+        db.Parent.findAll().then(parents => {
+            res.render('addStudent', {
+                title: getPageTitle('Add New Student'),
+                teacher_id: teacherId,
+                parents: parents
+            });
+        }).catch(err => {
+            // do something if error
+        });
     })
 
     app.post("/addStudent", isAuthenticated, function(req, res) {
         console.log(req.body)
-        res.redirect('/dashboard')
+        const teacherId = parseInt(req.body.teacher_id);
+        const studentName = req.body.student_name;
+        // find Parent by parent_name
+        db.Parent.findOrCreate({
+            where: {
+                parent_name: req.body.parent
+            }
+        }).then(function(parent) {
+            return db.Student.create({
+                student_name: studentName,
+                ParentId: parent.id,
+                TeacherId: teacherId
+            });
+        }).then(() => {
+            res.redirect('/dashboard')
+        }).catch(err => {
+            // do something if error
+        })
     })
 
     app.get("/dashboard", isAuthenticated, function(req, res) {
-        // TODO: add logic to distinguish between parents and teachers
         console.log("DASHBOARD")
         console.log(req.user);
-        const student_name = "Fred";
-        const student_id = 1;
-        res.render('dashboard', {
-            title: getPageTitle('Dashboard'),
-            isTeacher: true,
-            name: req.user.email,
-            students: [{
-                student_name: student_name,
-                student_id: student_id
-            }]
-        })
+        if (req.user.occupation === "TEACHER") {
+            // get all students from teacher_id
+            db.Teacher.findOne({
+                where: {
+                    UserId: req.user.id
+                }
+            }).then(function(teacher) {
+                db.Student.findAll({
+                    where: {
+                        TeacherId: teacher.id
+                    }
+                }).then(function(students) {
+                    res.render('dashboard', {
+                        title: getPageTitle('Dashboard'),
+                        isTeacher: true,
+                        name: teacher.teacher_name,
+                        teacher_id: teacher.id,
+                        students: students
+                    })
+                })
+            }).catch(function(err) {
+                // do something with error
+            })
+        } else if (req.user.occupation === "PARENT") {
+            // get all students from parent_id
+            db.Parent.findOne({
+                where: {
+                    UserId: req.user.id
+                }
+            }).then(function(parent) {
+                db.Student.findAll({
+                    where: {
+                        ParentId: parent.id
+                    }
+                }).then(function(students) {
+                    res.render('dashboard', {
+                        title: getPageTitle('Dashboard'),
+                        isTeacher: false,
+                        name: parent.parent_name,
+                        students: students
+                    })
+                })
+            }).catch(function(err) {
+                // do something with error
+            })
+
+        } else {
+            // something went wrong
+        }
     })
 
     //page to add a student comment

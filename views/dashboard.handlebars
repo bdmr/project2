@@ -2,7 +2,7 @@
 <div>
     {{#if isTeacher}}
     <a href="/cms">Add Comment</a>
-    <a href="/addStudent">Add New Student</a>
+    <a href="/addStudent?teacher_id={{ teacher_id }}">Add New Student</a>
     <h4>Students</h4>
     <ul>
         {{#each students}}
