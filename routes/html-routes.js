@@ -120,7 +120,7 @@ module.exports = function(app) {
                     // SELECT Posts.comment as comment, Students.student_name as student_name, Posts.StudentId as student_id FROM
                     // INNER JOIN Posts ON Students
                     // WHERE Posts.StudentId = Students.id; 
-                    console.log(students)
+                    students.forEach(s => console.log(s.getPosts()))
                     res.render('dashboard', {
                         title: getPageTitle('Dashboard'),
                         isTeacher: true,
