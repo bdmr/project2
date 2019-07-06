@@ -81,7 +81,7 @@ module.exports = function(app) {
             where: {
                 parent_name: req.body.parent
             }
-        }).then(function(parent) {
+        }).then(([parent, created]) => {
             return db.Student.create({
                 student_name: studentName,
                 ParentId: parent.id,
