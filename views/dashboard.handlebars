@@ -9,8 +9,9 @@
         {{#each students}}
         <li>
             <p>{{ student_name }}</p>
-            {{!-- <a href="/editStudent?id={{ student_id }}">Edit Student</a> --}}
-            <a href="/comments/?id={{ student_id }}">See Comments</a>
+            {{#each this.comments}}
+            <h6><span>{{this.date}}</span> {{this.comment}}</h6>
+            {{/each}}
         </li>
         {{/each}}
     </ul>
@@ -20,9 +21,8 @@
         {{#each students}}
         <li>
             <p>{{ student_name }}</p>
-            {{#each comments}}
-            <h6>{{date}}</h6>
-            <p>{{comment}}</p>
+            {{#each this.comments}}
+            <h6><span>{{this.date}}</span> {{this.comment}}</h6>
             {{/each}}
         </li>
         {{/each}}

@@ -115,19 +115,33 @@ module.exports = function(app) {
                         TeacherId: teacher.id
                     }
                 }).then(function(students) {
-                    // array of students
-                    // db.Post.findAll({where: {StudentId: student.id}})
-                    // SELECT Posts.comment as comment, Students.student_name as student_name, Posts.StudentId as student_id FROM
-                    // INNER JOIN Posts ON Students
-                    // WHERE Posts.StudentId = Students.id; 
-                    students.forEach(s => console.log(s.getPosts()))
-                    res.render('dashboard', {
-                        title: getPageTitle('Dashboard'),
-                        isTeacher: true,
-                        name: teacher.teacher_name,
-                        teacher_id: teacher.id,
-                        students: students
-                    })
+                    return Promise.all(students.map(student => student.getPosts()))
+                        // posts is an array of arrays of Posts
+                        .then(posts => {
+                            const studentsWithComments = students.map((student, i) => {
+                                return {
+                                    student_name: student.student_name,
+                                    id: student.id,
+                                    comments: posts[i].map(post => {
+                                        return {
+                                            date: post.createdAt.toDateString(),
+                                            comment: post.comment
+                                        }
+                                    })
+                                };
+                            })
+                            res.render('dashboard', {
+                                title: getPageTitle('Dashboard'),
+                                isTeacher: true,
+                                name: teacher.teacher_name,
+                                teacher_id: teacher.id,
+                                students: studentsWithComments
+                            });
+                        }).catch(err => {
+                            console.log(err.message)
+                            redirectOnError(res, "/dashboard", err.message)
+                        })
+
                 });
             }).catch(function(err) {
                 redirectOnError(res, "/dashboard", err.message);
@@ -144,13 +158,30 @@ module.exports = function(app) {
                         ParentId: parent.id
                     }
                 }).then(function(students) {
-                    res.render('dashboard', {
-                        title: getPageTitle('Dashboard'),
-                        isTeacher: false,
-                        name: parent.parent_name,
-                        students: students
-                    })
-                })
+                    return Promise.all(students.map(student => student.getPosts()))
+                        // posts is an array of arrays of Posts
+                        .then(posts => {
+                            const studentsWithComments = students.map((student, i) => {
+                                return {
+                                    student_name: student.student_name,
+                                    id: student.id,
+                                    comments: posts[i].map(post => {
+                                        return {
+                                            date: post.createdAt.toDateString(),
+                                            comment: post.comment
+                                        }
+                                    })
+                                };
+                            });
+                            res.render('dashboard', {
+                                title: getPageTitle('Dashboard'),
+                                isTeacher: false,
+                                name: parent.parent_name,
+                                parent_id: parent.id,
+                                students: studentsWithComments
+                            });
+                        })
+                });
             }).catch(function(err) {
                 redirectOnError(res, "/dashboard", err.message);
             })
