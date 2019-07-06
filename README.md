@@ -12,3 +12,4 @@
 
 ### Future Additions
 - Edit comments
+- Edit student

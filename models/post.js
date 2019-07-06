@@ -1,9 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
     var Post = sequelize.define("Post", {
-        grade: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
         comment: {
             type: DataTypes.TEXT,
             allowNull: false,

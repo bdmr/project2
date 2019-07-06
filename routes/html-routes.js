@@ -7,6 +7,13 @@ function getPageTitle(page) {
     return 'RulEr | ' + page;
 }
 
+function redirectOnError(res, previousPage, message) {
+    res.render("error", {
+        previous_page: previousPage,
+        error_message: message
+    })
+}
+
 module.exports = function(app) {
     app.get("/", function(req, res) {
         // If the user already has an account send them to the dashboard page
@@ -49,7 +56,7 @@ module.exports = function(app) {
         res.render('login', {
             layout: 'login',
             title: getPageTitle('Login')
-        })
+        });
     });
 
     app.get("/calendar", isAuthenticated, function(req, res) {
@@ -68,7 +75,7 @@ module.exports = function(app) {
                 parents: parents
             });
         }).catch(err => {
-            // do something if error
+            redirectOnError(res, "/dashboard", err.message);
         });
     })
 
@@ -90,12 +97,11 @@ module.exports = function(app) {
         }).then(() => {
             res.redirect('/dashboard')
         }).catch(err => {
-            // do something if error
+            redirectOnError(res, "/dashboard", err.message);
         })
     })
 
     app.get("/dashboard", isAuthenticated, function(req, res) {
-        console.log("DASHBOARD")
         console.log(req.user);
         if (req.user.occupation === "TEACHER") {
             // get all students from teacher_id
@@ -109,6 +115,12 @@ module.exports = function(app) {
                         TeacherId: teacher.id
                     }
                 }).then(function(students) {
+                    // array of students
+                    // db.Post.findAll({where: {StudentId: student.id}})
+                    // SELECT Posts.comment as comment, Students.student_name as student_name, Posts.StudentId as student_id FROM
+                    // INNER JOIN Posts ON Students
+                    // WHERE Posts.StudentId = Students.id; 
+                    console.log(students)
                     res.render('dashboard', {
                         title: getPageTitle('Dashboard'),
                         isTeacher: true,
@@ -116,10 +128,10 @@ module.exports = function(app) {
                         teacher_id: teacher.id,
                         students: students
                     })
-                })
+                });
             }).catch(function(err) {
-                // do something with error
-            })
+                redirectOnError(res, "/dashboard", err.message);
+            });
         } else if (req.user.occupation === "PARENT") {
             // get all students from parent_id
             db.Parent.findOne({
@@ -140,31 +152,25 @@ module.exports = function(app) {
                     })
                 })
             }).catch(function(err) {
-                // do something with error
+                redirectOnError(res, "/dashboard", err.message);
             })
 
         } else {
-            // something went wrong
+            redirectOnError(res, "/dashboard", `Occupation ${req.body.occupation} is not a valid occupation!`)
         }
     })
 
     //page to add a student comment
-    app.get("/cms", isAuthenticated, function(req, res) {
-        /** what data do you need?
-         * The Teacher/User 
-         * All Parents (from students)
-         * All Students
-         * =======================
-         * Teacher name (current user as long as they're a teacher, they can see this page)
-         * 
-         * Select (students)
-         * 
-         * Comments
-         * =======================
-         */
-
-        res.render('cms', {
-            title: getPageTitle('Create Posts')
-        })
+    app.get("/addComment", isAuthenticated, function(req, res) {
+        const teacherId = req.query.teacher_id;
+        db.Student.findAll().then(students => {
+            res.render('addComment', {
+                title: getPageTitle('Add Comment'),
+                students: students,
+                teacher_id: teacherId
+            });
+        }).catch(err => {
+            redirectOnError(res, "/dashboard", err.message);
+        });
     })
 }
