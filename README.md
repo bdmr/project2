@@ -1,27 +1,15 @@
 # project2
 
-### Data Model
+### TODO
 
-User
-- ID
-- Name
-- Password
-- Enum (Parent | Teacher)
-
-Students
-- ID
-- Name
-- Grade
-- Comments
-- ParentID
-- TeacherID
-
-Posts
-- ID
-- Title
-- Body
-- Teacher
-- Student
+- Teacher dashboard
+    - Add student
+    - add comment
+    - edit student
+- Parent dashboard
+    - List students and comments
 
 
-
+### Future Additions
+- Edit comments
+- Edit student

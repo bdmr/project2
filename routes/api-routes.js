@@ -4,8 +4,10 @@ var passport = require("../config/passport");
 module.exports = function(app) {
 
     app.post("/api/login", passport.authenticate("local"), function(req, res) {
-        res.json("/dashboard");
+        console.log("LOGGIN IN")
+        res.redirect("/dashboard");
     });
+
     app.post("/api/signup", function(req, res) {
         console.log(req.body);
         if (req.body.occupation == "TEACHER") {
@@ -68,21 +70,24 @@ module.exports = function(app) {
         }
     });
 
-    app.get("/logout", function(req, res) {
+    app.get("/api/logout", function(req, res) {
         req.logout();
         res.redirect("/");
     });
 
-    app.get("/api/user_data", function(req, res) {
-        if (!req.user) {
+    app.post("/api/addComment", function(req, res) {
+        const teacherId = parseInt(req.body.teacher_id);
+        const studentId = parseInt(req.body.student_id);
+        const comment = req.body.comment;
 
-            res.json({});
-        } else {
-            res.json({
-                email: req.user.email,
-                id: req.user.id
-            });
-        }
+        db.Post.create({
+            comment: comment,
+            TeacherId: teacherId,
+            StudentId: studentId
+        }).then(() => {
+            res.redirect("/dashboard");
+        }).catch(err => {
+            // let user know something went wrong
+        })
     });
-
 };

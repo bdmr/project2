@@ -1,14 +1,15 @@
 <h3>{{ name }}'s Dashboard</h3>
-<div>
+<a href="/api/logout">Log out</a>
+<div class="card">
     {{#if isTeacher}}
-    <a href="/cms">Add Comment</a>
+    <a href="/addComment?teacher_id={{ teacher_id }}">Add Comment</a>
     <a href="/addStudent?teacher_id={{ teacher_id }}">Add New Student</a>
     <h4>Students</h4>
     <ul>
         {{#each students}}
         <li>
-            <h5>{{ student_name }}</h5>
-            <a href="/editStudent?id={{ student_id }}">Edit Student</a>
+            <p>{{ student_name }}</p>
+            {{!-- <a href="/editStudent?id={{ student_id }}">Edit Student</a> --}}
             <a href="/comments/?id={{ student_id }}">See Comments</a>
         </li>
         {{/each}}
@@ -18,7 +19,7 @@
     <ul>
         {{#each students}}
         <li>
-            <h5>{{ student_name }}</h5>
+            <p>{{ student_name }}</p>
             {{#each comments}}
             <h6>{{date}}</h6>
             <p>{{comment}}</p>
