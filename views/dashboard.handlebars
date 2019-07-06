@@ -1,35 +1,53 @@
 <link rel='stylesheet' href='/css/dashboard.css'>
 <main><div class="container"><h3>{{ name }}'s Dashboard</h3>
-<a href="/api/logout">Log out</a>
-<div class="card deep-orange lighten-2">
+<a class="waves-effect waves-light btn-small deep-orange lighten-2" href="/api/logout">Log out</a>
+
     {{#if isTeacher}}
-    <a class="dashLinkColor waves-effect waves-light btn-small" href="/addComment?teacher_id={{ teacher_id }}">Add Comment</a>
-    <a class="dashLinkColor waves-effect waves-light btn-small" href="/addStudent?teacher_id={{ teacher_id }}">Add New Student</a>
-    <h4>Students</h4>
+    
+    <div>
+    
+    <h1>Students</h1>
+    </div>
+
     <ul>
         {{#each students}}
+        
+        <table>
+            <tr>
         <li>
-            <p>{{ student_name }}</p>
+            <td><p>{{ student_name }}</p>
             {{#each this.comments}}
-            <h6><span>{{this.date}}</span> {{this.comment}}</h6>
+            <h6><span>{{this.date}}</span> {{this.comment}}</h6></td>
             {{/each}}
-        </li>
+        </li> <br>
         {{/each}}
+        </tr>
+        </table>
+        <a class="dashLinkColor waves-effect waves-light btn-small deep-orange lighten-2" href="/addComment?teacher_id={{ teacher_id }}">Add Comment</a>
+        <a class="dashLinkColor waves-effect waves-light btn-small deep-orange lighten-2" href="/addStudent?teacher_id={{ teacher_id }}">Add New Student</a>
     </ul>
     {{else}}
-    <h4>Your Students</h4>
+    <div>
+    <h1>Your Students</h1>
+    </div>
     <ul>
         {{#each students}}
+        <table>
+            <tr>
         <li>
-            <p>{{ student_name }}</p>
+            <td><p>{{ student_name }}</p>
             {{#each this.comments}}
-            <h6><span>{{this.date}}</span> {{this.comment}}</h6>
+            <h6><span>{{this.date}}</span> {{this.comment}}</h6></td>
             {{/each}}
-        </li>
+        </li> <br>
         {{/each}}
+        </tr>
+        </table>
     </ul>
     {{/if}}
-</div></div>
+
+
+</div>
 </main>
 <footer>
 <img class="responsive-img" src="/../images/dreamstime_four.jpg" width="1800px">

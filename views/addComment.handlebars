@@ -3,7 +3,7 @@
 <div class="container">
     <div class="card">
         <div class="card-action deep-orange lighten-2 white-text">
-            <h4>Review Your Student:</h4>
+            <h2>Review Your Student:</h2>
         </div>
         <br>
         <div class="form-group center-align">
@@ -11,8 +11,8 @@
             <form id="student-form" action="/api/addComment" method="post">
                 <input id="teacher_id" name="teacher_id" type="hidden" value="{{ teacher_id }}">
                 <div class="row">
-                    <div class="input-field col">
-                        <label for="student"> Select Student: </label>
+                    <div class="input-field col s4">
+                        <label for="student"></label>
                         <select id="student" name="student_id" class="browser-default">
                             <option value="" disabled selected> Choose Student</option>
                             {{#each students}}

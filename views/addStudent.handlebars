@@ -1,19 +1,26 @@
 <link href="/css/student.css" rel="stylesheet">
 <main>
     <div class="container">
+        <div class="card">
+            <div class="card-action deep-orange lighten-2 white-text">
+                <h3>Add Student</h3>
+                </div>
+              <br>  
         <div class="row">
             <form class="col s12" id="student-form" action="/addStudent" method="post">
                 {{!-- this tells our post route that user is a TEACHER --}}
                 <input id="teacher_id" name="teacher_id" type="hidden" value="{{ teacher_id }}">
-                <div class="form-field">
-                    <label for="student_name">Student Name</label>
+                <div class="form-field col s6">
+                     <label for="student_name">Student Name</label> <br>
                     <input placeholder="Enter the STUDENT's name" id="student_name" name="student_name" type="text"
                         class="validate" />
-                </div><br>
+                       
+                </div>
 
-                <div class="form-field">
-                    <label for="parent" class="black-text">Parent Name</label>
+                <div class="form-field col s6">
+                     <label for="parent" class="black-text">Parent Name</label> <br>
                     <input list="parents" name="parent" class="browser-default" />
+                   
                     <datalist id="parents">
                         {{#each parents}}
                         <option value="{{this.parent_name}}">
@@ -24,14 +31,10 @@
                     <button type="submit" class="btn-large deep-orange lighten-2">Add student</button>
                 </div>
             </form>
-        </div> <br>
+        </div></div> <br>
 
         <div id="studentdivbody">
 
         </div>
     </div>
 </main>
-
-<footer>
-    <img class="responsive-img" src="/../images/dreamstime_four.jpg" width="1800px">
-</footer>
