@@ -22,36 +22,36 @@ First page you will see is the log in page. If you already have an account pleas
 
 If you do not have an account, please set up an account as a teacher. After logging in as a teacher, you can then add a parent to the system once you add a student to your class.
 
-![alt text](images/regularlogin.png "Main Login Image")
+![alt text](public/images/regularlogin.png "Main Login Image")
 
-![alt text](images/teachersetup.png "Teacher Setup Account")
+![alt text](public/images/teachersetup.png "Teacher Setup Account")
 
-![alt text](images/parentsetup.png "Parent Setup Account")
+![alt text](public/images/parentsetup.png "Parent Setup Account")
 
 After adding a student and a parent, the parent will then be able to update their information with their email address and a password in order to log in to view their dashboard for their kids. 
 
 #Add a Student and Parent
 A teacher will add a student and a parent from this page. An existing parent can also be selected from the drop down if a new account set up is not needed. 
 
-![alt text](images/addstudent.png "Add Student and Parent")
+![alt text](public/images/addstudent.png "Add Student and Parent")
 
 Teacher will leave comments for students from this screen.
-![alt text](images/commentstudent.png "Leave Student Comment")
+![alt text](public/images/commentstudent.png "Leave Student Comment")
 
 
 ## Dashboard :clipboard:
 A teacher can view all of the posts from their dashboard. The teacher will also find the buttons to add a student or leave a comment on the same page.
 
-![alt text](images/teacherdashboard.png "Leave Student Comment")
+![alt text](public/images/teacherdashboard.png "Leave Student Comment")
 
 A parent can view posts on their dashboard as well. A parent will only see posts assigned to them and their kids.
 
-![alt text](images/parentdashboard.png "Leave Student Comment")
+![alt text](public/images/parentdashboard.png "Leave Student Comment")
 
 ## Calendar :calendar:
 A teacher and parent can view the calendar of events and activities added for the summer. They can view it as a monthly calendar, weekly, or daily. Some events can open directly to a webpage for more information. Events can also be dragged and dropped to different dates if needed to update. 
 
-![alt text](images/calendar.png "View of Calendar")
+![alt text](public/images/calendar.png "View of Calendar")
 
 ### The Future
 ## Teacher
